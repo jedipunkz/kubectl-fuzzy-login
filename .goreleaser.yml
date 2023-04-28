@@ -1,0 +1,32 @@
+before:
+  hooks:
+    - go mod tidy
+    - go generate ./...
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+      - linux
+      - windows
+    goarch:
+      - amd64
+      - arm
+      - arm64
+    mod_timestamp: '{{ .CommitTimestamp }}'
+
+# brews:
+#   - tap:
+#       owner: jedipunkz
+#       name: homebrew-kubecli
+#       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+#     commit_author:
+#       name: goreleasebot
+#       email: goreleaser@carlosbecker.com
+#     description: "Kubernetes client provides features which not provided by kubecli"
+#     homepage: "https://github.com/jedipunkz/kubecli"
+#     folder: Formula
+#     install: |
+#       bin.install "kubecli"
+#     test: |
+#       system "${bin}/kubecli --help"
