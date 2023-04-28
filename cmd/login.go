@@ -11,7 +11,7 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/client-go/util/homedir"
 
-	"github.com/jedipunkz/kubecli/internal/kubecli"
+	mykube "github.com/jedipunkz/kubecli/internal/kubernetes"
 )
 
 // func main() {
@@ -38,7 +38,7 @@ func login() {
 		os.Exit(1)
 	}
 
-	podGetter := &kubecli.PodGetterImpl{}
+	podGetter := &mykube.PodGetterImpl{}
 
 	podList, err := podGetter.GetPods(clientset)
 	if err != nil {
@@ -57,7 +57,7 @@ func login() {
 
 	selectedPod := podList[index]
 	fmt.Printf("Logging into pod %s in namespace %s...\n", selectedPod.Name, selectedPod.Namespace)
-	podExecutor := &kubecli.PodExecutorImpl{}
+	podExecutor := &mykube.PodExecutorImpl{}
 	if err := podExecutor.ExecInPod(clientset, config, selectedPod.Name, selectedPod.Namespace); err != nil {
 		fmt.Printf("Error executing command in pod: %v\n", err)
 	}
