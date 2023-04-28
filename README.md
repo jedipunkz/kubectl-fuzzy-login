@@ -10,4 +10,3 @@ Apache LICENSE
 ## Author
 
 - jedipunkz
-- ChatGPT
