@@ -52,7 +52,8 @@ func (p *PodExecutorImpl) ExecInPod(clientset kubernetes.Interface, config *rest
 		return err
 	}
 
-	err = exec.Stream(remotecommand.StreamOptions{
+	// err = exec.Stream(remotecommand.StreamOptions{
+	err = exec.StreamWithContext(context.Background(), remotecommand.StreamOptions{
 		Stdin:  os.Stdin,
 		Stdout: os.Stdout,
 		Stderr: os.Stderr,
