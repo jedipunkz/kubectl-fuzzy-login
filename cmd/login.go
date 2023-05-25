@@ -46,16 +46,24 @@ func login() {
 		os.Exit(1)
 	}
 
-	index, err := fuzzyfinder.Find(podList, func(i int) string {
-		return podList[i].Name
-	})
+	index, err := fuzzyfinder.FindMulti(
+		podList,
+		func(i int) string {
+			return podList[i].Name
+		},
+		fuzzyfinder.WithPreviewWindow(func(i, w, h int) string {
+			if i == -1 {
+				return ""
+			}
+			return fmt.Sprintf("Name: %s\nNamespace: %s\n", podList[i].Name, podList[i].Namespace)
+		}))
 
 	if err != nil {
 		fmt.Printf("Error finding pod: %v\n", err)
 		os.Exit(1)
 	}
 
-	selectedPod := podList[index]
+	selectedPod := podList[index[0]]
 	fmt.Printf("Logging into pod %s in namespace %s...\n", selectedPod.Name, selectedPod.Namespace)
 	podExecutor := &mykube.PodExecutorImpl{}
 	if err := podExecutor.ExecInPod(clientset, config, selectedPod.Name, selectedPod.Namespace); err != nil {
