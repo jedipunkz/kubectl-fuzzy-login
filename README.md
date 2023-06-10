@@ -21,7 +21,7 @@ Replace /your/bin/path with the directory in your PATH where you want to copy th
 
 There are two main ways to use kubectl-login-pod:
 
-### Access pods across all namespaces:
+### Login to a pod across all namespaces:
 
 ```bash
 kubectl fuzzy login
@@ -29,7 +29,7 @@ kubectl fuzzy login
 
 This command provides access to all pods within your Kubernetes cluster, irrespective of the namespace they are in. This is useful when you need a broad overview of your cluster's pods.
 
-### Access pods within a specific namespace:
+### Login to a pod within a specific namespace:
 
 ```bash
 kubectl fuzzy login -n <namespace>
