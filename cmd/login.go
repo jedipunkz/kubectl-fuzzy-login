@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/fatih/color"
 	"github.com/ktr0731/go-fuzzyfinder"
 	"github.com/spf13/cobra"
 	"k8s.io/client-go/kubernetes"
@@ -14,6 +15,7 @@ import (
 	mykube "github.com/jedipunkz/kubecli/internal/kubernetes"
 )
 
+// Namespace variable for command flags
 var namespace string
 
 var loginCmd = &cobra.Command{
@@ -56,7 +58,13 @@ func login() {
 			if i == -1 {
 				return ""
 			}
-			return fmt.Sprintf("Name: %s\nNamespace: %s\n", podList[i].Name, podList[i].Namespace)
+			return fmt.Sprintf(
+				"%s: %s\n%s: %s\n%s: %s\n%s: %s\n",
+				color.CyanString("Name"), podList[i].Name,
+				color.MagentaString("Namespace"), podList[i].Namespace,
+				color.YellowString("Creating Timestamp"), podList[i].CreationTimestamp,
+				color.RedString("UUID"), podList[i].UID,
+			)
 		}))
 
 	if err != nil {
