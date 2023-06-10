@@ -1,5 +1,5 @@
 # kubectl-fuzzy-login
-The kubectl-fuzzy-login is a kubectl plugin that allows you to find pods, containers and login to container across namespaces in your kubernetes cluster.
+The kubectl-fuzzy-login is a kubectl plugin that allows you to fuzzy find pods/containers and login to container across namespaces in your kubernetes cluster.
 
 ## Installation
 To install kubectl-fuzzy-login, follow these steps:
