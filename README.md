@@ -1,6 +1,22 @@
 # kubectl-login-pod
 The kubectl-login-pod is a kubectl plugin that allows you to access pods across amespaces in your Kubernetes cluster. This makes it easy to debug and manage your applications.
 
+## Installation
+To install kubectl-login-pod, follow these steps:
+
+1. Build the kubectl-login-pod binary using the Go compiler:
+```bash
+go build
+```
+
+2.Copy the generated binary to a directory in your PATH:
+
+```bash
+cp kubectl-login-pod /your/bin/path
+```
+
+Replace /your/bin/path with the directory in your PATH where you want to copy the binary.
+
 ## Usage
 
 There are two main ways to use kubectl-login-pod:
