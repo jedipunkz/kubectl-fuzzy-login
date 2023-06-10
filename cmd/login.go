@@ -14,7 +14,8 @@ import (
 	mykube "github.com/jedipunkz/kubecli/internal/kubernetes"
 )
 
-// func main() {
+var namespace string
+
 var loginCmd = &cobra.Command{
 	Use:   "login",
 	Short: "Login to a Kubernetes Pod",
@@ -40,7 +41,7 @@ func login() {
 
 	podGetter := &mykube.PodGetterImpl{}
 
-	podList, err := podGetter.GetPods(clientset)
+	podList, err := podGetter.GetPods(clientset, namespace)
 	if err != nil {
 		fmt.Printf("Error getting pods: %v\n", err)
 		os.Exit(1)
@@ -72,5 +73,6 @@ func login() {
 }
 
 func init() {
+	loginCmd.Flags().StringVarP(&namespace, "namespace", "n", "", "Kubernetes namespace")
 	rootCmd.AddCommand(loginCmd)
 }
