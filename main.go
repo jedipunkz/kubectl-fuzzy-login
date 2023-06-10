@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/jedipunkz/kubectl-login-pod/cmd"
+	"github.com/jedipunkz/kubectl-fuzzy-login/cmd"
 )
 
 func main() {
