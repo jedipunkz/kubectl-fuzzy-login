@@ -25,8 +25,8 @@ type PodExecutor interface {
 
 type PodGetterImpl struct{}
 
-func (p *PodGetterImpl) GetPods(clientset kubernetes.Interface) ([]corev1.Pod, error) {
-	podList, err := clientset.CoreV1().Pods("").List(context.Background(), metav1.ListOptions{})
+func (p *PodGetterImpl) GetPods(clientset kubernetes.Interface, namespace string) ([]corev1.Pod, error) {
+	podList, err := clientset.CoreV1().Pods(namespace).List(context.Background(), metav1.ListOptions{})
 	if err != nil {
 		return nil, err
 	}

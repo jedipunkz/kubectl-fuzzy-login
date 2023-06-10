@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/fatih/color"
 	"github.com/ktr0731/go-fuzzyfinder"
 	"github.com/spf13/cobra"
 	"k8s.io/client-go/kubernetes"
@@ -14,7 +15,9 @@ import (
 	mykube "github.com/jedipunkz/kubecli/internal/kubernetes"
 )
 
-// func main() {
+// Namespace variable for command flags
+var namespace string
+
 var loginCmd = &cobra.Command{
 	Use:   "login",
 	Short: "Login to a Kubernetes Pod",
@@ -40,7 +43,7 @@ func login() {
 
 	podGetter := &mykube.PodGetterImpl{}
 
-	podList, err := podGetter.GetPods(clientset)
+	podList, err := podGetter.GetPods(clientset, namespace)
 	if err != nil {
 		fmt.Printf("Error getting pods: %v\n", err)
 		os.Exit(1)
@@ -55,7 +58,13 @@ func login() {
 			if i == -1 {
 				return ""
 			}
-			return fmt.Sprintf("Name: %s\nNamespace: %s\n", podList[i].Name, podList[i].Namespace)
+			return fmt.Sprintf(
+				"%s: %s\n%s: %s\n%s: %s\n%s: %s\n",
+				color.CyanString("Name"), podList[i].Name,
+				color.MagentaString("Namespace"), podList[i].Namespace,
+				color.YellowString("Creating Timestamp"), podList[i].CreationTimestamp,
+				color.RedString("UUID"), podList[i].UID,
+			)
 		}))
 
 	if err != nil {
@@ -72,5 +81,6 @@ func login() {
 }
 
 func init() {
+	loginCmd.Flags().StringVarP(&namespace, "namespace", "n", "", "Kubernetes namespace")
 	rootCmd.AddCommand(loginCmd)
 }
