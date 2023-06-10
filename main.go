@@ -1,7 +1,13 @@
 package main
 
-import "github.com/jedipunkz/kubectl-login-pod/cmd"
+import (
+	"log"
+
+	"github.com/jedipunkz/kubectl-login-pod/cmd"
+)
 
 func main() {
-	cmd.RootCmd.Execute()
+	if err := cmd.RootCmd.Execute(); err != nil {
+		log.Fatalf("Failed to execute root command: %v", err)
+	}
 }
