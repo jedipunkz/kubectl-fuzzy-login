@@ -1,8 +1,10 @@
-module github.com/jedipunkz/kubecli
+module github.com/jedipunkz/kubectl-login-pod
 
 go 1.20
 
 require (
+	github.com/fatih/color v1.15.0
+	github.com/jedipunkz/kubecli v0.1.0
 	github.com/ktr0731/go-fuzzyfinder v0.7.0
 	github.com/spf13/cobra v1.7.0
 	k8s.io/api v0.27.2
@@ -14,7 +16,6 @@ require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/emicklei/go-restful/v3 v3.9.0 // indirect
 	github.com/evanphx/json-patch v4.12.0+incompatible // indirect
-	github.com/fatih/color v1.15.0 // indirect
 	github.com/gdamore/encoding v1.0.0 // indirect
 	github.com/gdamore/tcell/v2 v2.5.3 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
