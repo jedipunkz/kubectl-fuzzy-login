@@ -9,7 +9,7 @@ To install kubectl-login-pod, follow these steps:
 go build
 ```
 
-2.Copy the generated binary to a directory in your PATH:
+2. Copy the generated binary to a directory in your PATH:
 
 ```bash
 cp kubectl-login-pod /your/bin/path
