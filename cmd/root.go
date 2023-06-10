@@ -12,7 +12,7 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/client-go/util/homedir"
 
-	mykube "github.com/jedipunkz/kubectl-login-pod/internal/kubernetes"
+	mykube "github.com/jedipunkz/kubectl-fuzzy-login/internal/kubernetes"
 )
 
 var namespace string
