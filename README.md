@@ -1,10 +1,14 @@
 # kubectl-fuzzy-login
 The kubectl-fuzzy-login is a kubectl plugin that allows you to fuzzy find pods/containers and login to container across namespaces in your kubernetes cluster.
 
+## Screenshot
+
+<img src="https://raw.githubusercontent.com/jedipunkz/kubecli/main/static/kubectl-fuzzy-login.gif">
+
 ## Installation
 To install kubectl-fuzzy-login, follow these steps:
 
-### 1. Build the kubectl-login-pod binary using the Go compiler:
+### 1. Build the kubectl-fuzzy-login binary using the Go compiler:
 ```bash
 go build
 ```
@@ -19,7 +23,7 @@ Replace /your/bin/path with the directory in your PATH where you want to copy th
 
 ## Usage
 
-There are two main ways to use kubectl-login-pod:
+There are two main ways to use kubectl-fuzzy-login:
 
 ### Login to a pod across all namespaces:
 
@@ -39,11 +43,7 @@ This command limits access to the pods within the specified namespace. This is h
 
 Replace <namespace> with the name of the namespace you want to target.
 
-## Screenshot
-
-<img src="https://raw.githubusercontent.com/jedipunkz/kubecli/main/static/kubectl-fuzzy-login.gif">
-
-## LICENSE
+  ## LICENSE
 
 Apache LICENSE
 
