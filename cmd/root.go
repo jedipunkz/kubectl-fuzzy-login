@@ -16,6 +16,7 @@ import (
 )
 
 var namespace string
+var shell string
 
 var RootCmd = &cobra.Command{
 	Use:   "kubectl login pod",
@@ -103,7 +104,7 @@ var RootCmd = &cobra.Command{
 		fmt.Printf("Logging into container %s in pod %s in namespace %s...\n", selectedContainer.Name, selectedPod.Name, selectedPod.Namespace)
 
 		podExecutor := &mykube.PodExecutorImpl{}
-		if err := podExecutor.ExecInPod(clientset, config, selectedPod.Name, selectedPod.Namespace, selectedContainer.Name); err != nil {
+		if err := podExecutor.ExecInPod(clientset, config, selectedPod.Name, selectedPod.Namespace, selectedContainer.Name, shell); err != nil {
 			fmt.Printf("Error executing command in container: %v\n", err)
 		}
 	},
@@ -111,4 +112,5 @@ var RootCmd = &cobra.Command{
 
 func init() {
 	RootCmd.Flags().StringVarP(&namespace, "namespace", "n", "", "Kubernetes namespace")
+	RootCmd.Flags().StringVarP(&shell, "shell", "s", "", "Shell")
 }
