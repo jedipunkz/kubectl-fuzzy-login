@@ -11,10 +11,6 @@ import (
 	"k8s.io/client-go/tools/remotecommand"
 )
 
-const (
-	defaultShell = "/bin/sh"
-)
-
 var specifiedShell string
 
 type PodGetter interface {
@@ -38,12 +34,6 @@ type PodExecutor interface {
 type PodExecutorImpl struct{}
 
 func (p *PodExecutorImpl) ExecInPod(clientset kubernetes.Interface, config *rest.Config, podName string, namespace string, containerName string, shell string) error {
-	if shell == "" {
-		specifiedShell = defaultShell
-	} else {
-		specifiedShell = shell
-	}
-
 	req := clientset.CoreV1().RESTClient().Post().
 		Resource("pods").
 		Name(podName).
@@ -53,7 +43,7 @@ func (p *PodExecutorImpl) ExecInPod(clientset kubernetes.Interface, config *rest
 		Param("stdout", "true").
 		Param("stderr", "true").
 		Param("tty", "true").
-		Param("command", specifiedShell).
+		Param("command", shell).
 		Param("container", containerName)
 
 	exec, err := remotecommand.NewSPDYExecutor(config, "POST", req.URL())
