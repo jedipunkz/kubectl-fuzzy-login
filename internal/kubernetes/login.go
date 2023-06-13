@@ -11,8 +11,6 @@ import (
 	"k8s.io/client-go/tools/remotecommand"
 )
 
-var specifiedShell string
-
 type PodGetter interface {
 	GetPods(clientset kubernetes.Interface) ([]corev1.Pod, error)
 }
