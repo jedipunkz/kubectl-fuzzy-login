@@ -15,6 +15,8 @@ const (
 	defaultShell = "/bin/sh"
 )
 
+var specifiedShell string
+
 type PodGetter interface {
 	GetPods(clientset kubernetes.Interface) ([]corev1.Pod, error)
 }
@@ -35,7 +37,13 @@ type PodExecutor interface {
 
 type PodExecutorImpl struct{}
 
-func (p *PodExecutorImpl) ExecInPod(clientset kubernetes.Interface, config *rest.Config, podName string, namespace string, containerName string) error {
+func (p *PodExecutorImpl) ExecInPod(clientset kubernetes.Interface, config *rest.Config, podName string, namespace string, containerName string, shell string) error {
+	if shell == "" {
+		specifiedShell = defaultShell
+	} else {
+		specifiedShell = shell
+	}
+
 	req := clientset.CoreV1().RESTClient().Post().
 		Resource("pods").
 		Name(podName).
@@ -45,7 +53,7 @@ func (p *PodExecutorImpl) ExecInPod(clientset kubernetes.Interface, config *rest
 		Param("stdout", "true").
 		Param("stderr", "true").
 		Param("tty", "true").
-		Param("command", defaultShell).
+		Param("command", specifiedShell).
 		Param("container", containerName)
 
 	exec, err := remotecommand.NewSPDYExecutor(config, "POST", req.URL())
@@ -53,7 +61,6 @@ func (p *PodExecutorImpl) ExecInPod(clientset kubernetes.Interface, config *rest
 		return err
 	}
 
-	// err = exec.Stream(remotecommand.StreamOptions{
 	err = exec.StreamWithContext(context.Background(), remotecommand.StreamOptions{
 		Stdin:  os.Stdin,
 		Stdout: os.Stdout,
