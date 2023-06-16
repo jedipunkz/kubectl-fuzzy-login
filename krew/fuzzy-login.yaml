@@ -13,7 +13,7 @@ spec:
   - selector:
       matchLabels:
         os: darwin
-        arch: amd64
+        arch: arm64
     uri: https://github.com/jedipunkz/kubectl-fuzzy-login/releases/download/v0.3.0/kubectl-fuzzy-login_0.3.0_darwin_arm64.tar.gz
     sha256: "6043b09b9c66459d19d7c0910b8baaff12968f7283174f1d91a6dbbfcc69b5f4"
     files:
