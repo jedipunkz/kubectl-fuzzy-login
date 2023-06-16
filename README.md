@@ -8,12 +8,23 @@ The kubectl-fuzzy-login is a kubectl plugin that allows you to fuzzy find pods/c
 ## Installation
 To install kubectl-fuzzy-login, follow these steps:
 
-### 1. Build the kubectl-fuzzy-login binary using the Go compiler:
+### Install with Krew
+
+- require: [Install krew](https://krew.sigs.k8s.io/docs/user-guide/setup/install/)
+
+```shell
+git clone https://github.com/jedipunkz/kubectl-fuzzy-login.git
+kubectl krew install --manifest=./kubectl-fuzzy-login/krew/fuzzy-login.yaml
+```
+
+### Manual Install
+
+#### 1. Build the kubectl-fuzzy-login binary using the Go compiler:
 ```bash
 go build
 ```
 
-### 2. Copy the generated binary to a directory in your PATH:
+#### 2. Copy the generated binary to a directory in your PATH:
 
 ```bash
 cp kubectl-fuzzy-login /your/bin/path

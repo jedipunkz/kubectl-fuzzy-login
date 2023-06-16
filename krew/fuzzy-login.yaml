@@ -1,0 +1,33 @@
+apiVersion: krew.googlecontainertools.github.com/v1alpha2
+kind: Plugin
+metadata:
+  name: fuzzy-login
+spec:
+  version: "v0.1.0"  # これは仮のバージョンで、実際のバージョンに置き換える必要があります
+  homepage: https://github.com/jedipunkz/kubectl-fuzzy-login
+  shortDescription: Fuzzy Find pods and containers and Login to container.
+  description: |
+    This kubectl plugin allows users to fuzzy find pods/containers and login to container across namespaces in your Kubernetes cluster.
+  caveats: ""
+  platforms:
+  - selector:
+      matchLabels:
+        os: darwin
+        arch: arm64
+    uri: https://github.com/jedipunkz/kubectl-fuzzy-login/releases/download/v0.3.0/kubectl-fuzzy-login_0.3.0_darwin_arm64.tar.gz
+    sha256: "6043b09b9c66459d19d7c0910b8baaff12968f7283174f1d91a6dbbfcc69b5f4"
+    files:
+    - from: "*"
+      to: "."
+    bin: "kubectl-fuzzy-login"
+  - selector:
+      matchLabels:
+        os: linux
+        arch: amd64
+    uri: https://github.com/jedipunkz/kubectl-fuzzy-login/releases/download/v0.3.0/kubectl-fuzzy-login_0.3.0_linux_armv6.tar.gz
+    sha256: "e1f9d7f6c7c7ed15885fdf23ea753dd937f52096fa4b5eba284bfe3942f7ddf9"
+    files:
+    - from: "*"
+      to: "."
+    bin: "kubectl-fuzzy-login"
+
