@@ -3,7 +3,7 @@ kind: Plugin
 metadata:
   name: fuzzy-login
 spec:
-  version: "v0.1.0"  # これは仮のバージョンで、実際のバージョンに置き換える必要があります
+  version: "v0.3.0"
   homepage: https://github.com/jedipunkz/kubectl-fuzzy-login
   shortDescription: Fuzzy Find pods and containers and Login to container.
   description: |
