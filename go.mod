@@ -7,7 +7,7 @@ require (
 	github.com/ktr0731/go-fuzzyfinder v0.7.0
 	github.com/spf13/cobra v1.7.0
 	k8s.io/api v0.27.2
-	k8s.io/apimachinery v0.27.2
+	k8s.io/apimachinery v0.27.3
 	k8s.io/client-go v0.27.2
 )
 
