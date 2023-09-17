@@ -5,6 +5,7 @@ on: [push]
 jobs:
   setup:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Set Up
         uses: actions/setup-go@v4
@@ -26,6 +27,7 @@ jobs:
   build:
     needs: setup
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Check Out
         uses: actions/checkout@v3.1.0
@@ -36,6 +38,7 @@ jobs:
   test:
     needs: setup
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Check out
         uses: actions/checkout@v3.1.0
@@ -46,6 +49,7 @@ jobs:
   lint:
     needs: setup
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Check Out
         uses: actions/checkout@v3.1.0
@@ -53,4 +57,5 @@ jobs:
       - name: Golangci-Lint
         uses: golangci/golangci-lint-action@v3
         with:
+          args: --timeout=30m
           version: latest
